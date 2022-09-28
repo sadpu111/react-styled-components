@@ -1,32 +1,46 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 
-const Father = styled.div`
+const roatatiomAnimation = keyframes` // keyframes 함수
+  0% {
+    transform: rotate(0deg);
+    border-radius: 0px;
+  }
+  50% {
+    transform: rotate(180deg);
+    border-radius: 100px;
+  }
+  100% {
+    transform: rotate(360deg);
+    border-radius: 0px;
+  }
+`;
+
+const Wrapper = styled.div`
   display: flex;
 `;
 
-const Btn = styled.button`
-  color: white;
+const Box = styled.div`
+  height: 200px;
+  width: 200px;
   background-color: tomato;
-  border: 0;
-  border-radius: 15px;
+  animation: ${roatatiomAnimation} 1s linear infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  span { // styled-components가 아니지만 Box 내부에 있는 태그를 호출 가능하다.
+    font-size: 50px;
+    &:hover { // pseudo selector. span:hover과 동일한 문법.
+      font-size: 100px;}
+  }
 `;
-
-const Input = styled.input.attrs({required: true, minLength:10})`
-  background-color: blue;
-`;
-
-// as="a" 라는 prop을 추가함으로써 Btn의 button태그를 a태그로 변환한다. 즉, styled.a``; 로 변환하는 것.  
 
 function App() {
   return (
-    <Father>
-      <Btn>Log In</Btn>
-      <Btn as="a">Log In</Btn> 
-      <Input />
-      <Input />
-      <Input />
-      <Input />
-    </Father>
+    <Wrapper>
+      <Box>
+        <span>😍</span>
+      </Box>
+    </Wrapper>
   );
 }
 
